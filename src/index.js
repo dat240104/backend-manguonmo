@@ -13,7 +13,7 @@ app.use(cors({ origin: "*" }));
 // KẾT NỐI DATABASE TRONG DOCKER
 
 app.get("/manguonmo", (req, res) => {
-    res.status(200).json("Đạt D22TH08");
+    res.status(200).json("Đạt 2401");
 });
 
 
