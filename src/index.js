@@ -1,25 +1,22 @@
-import express from 'express' //sử dụng cú pháp import thay vì require do đã khai báo "type": "module" trong package.json
-import morgan from 'morgan' //import morgan để log các request HTTP
-import bodyParser from 'body-parser'
-import branchRouter from './routers/branchRouter.js';
+import express from "express";
+import morgan from "morgan";
+import bodyParser from "body-parser";
 import cors from "cors";
 
-
 const app = express();
-app.use(morgan('combined')) // xử dụng để xem log của resquest HTTP
-app.use(bodyParser.urlencoded({ extended: false })) // Sử dụng body-parser để phân tích cú pháp URL-encoded trong các yêu cầu đến
-app.use(bodyParser.json()) // Sử dụng body-parser để phân tích cú pháp JSON trong các yêu cầu đến
 
-// app.use('/branches', branchRouter);;
-const data = {name:"Nguyễn Trí Cường", MSSV:"DH52200424", Lớp:"D22-TH08"};
+app.use(morgan("combined"));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(cors({ origin: "*" }));
-app.use("/",(req, res)=>{
-    res.json("Branch Service đã kết nối thành công, test sau khi coppy vao project chinh");
+
+// KẾT NỐI DATABASE TRONG DOCKER
+
+app.get("/manguonmo", (req, res) => {
+    res.status(200).json("Đạt D22TH08");
 });
 
 
-app.listen(3002, () => {
-    console.log('Branch service is running on port 3002');
-});
-// const PORT = process.env.PORT || 3000;
-// app.listen(PORT, () => console.log("Server listening on", PORT));
+
+const PORT = 8080;
+app.listen(PORT, () => console.log("Server listening on", PORT));
